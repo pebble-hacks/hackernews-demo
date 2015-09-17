@@ -1,0 +1,18 @@
+{
+  "uuid": "30b3cdfa-97ad-4427-a13c-c9fc2a98bb9e",
+  "shortName": "hackernews",
+  "longName": "hackernews",
+  "companyName": "MakeAwesomeHappen",
+  "versionLabel": "1.0",
+  "sdkVersion": "3",
+  "targetPlatforms": ["aplite", "basalt"],
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": []
+  }
+}
