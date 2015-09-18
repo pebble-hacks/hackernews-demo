@@ -10,7 +10,8 @@
     "watchface": false
   },
   "appKeys": {
-    "greeting": 0
+    "greeting": 0,
+    "title": 1
   },
   "resources": {
     "media": []

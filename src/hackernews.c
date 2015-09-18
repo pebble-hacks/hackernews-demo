@@ -6,6 +6,7 @@ static char *s_text;
 
 enum APP_MESSAGE_KEYS {
   GREETING = 0,
+  TITLE,
 };
 
 void send_message(char *message) {
@@ -23,11 +24,17 @@ void in_dropped_handler(AppMessageResult reason, void *context) {
 }
 
 void in_received_handler(DictionaryIterator *received, void *context) {
-  // We're going to do something here
+  Tuple *tuple;
+  
+  tuple = dict_find(received, TITLE);
+  if(tuple) {
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "Received message: %s", tuple->value->cstring);
+  }
 }
 
 void out_failed_handler(DictionaryIterator *failed, AppMessageResult reason, void *context) {
   APP_LOG(APP_LOG_LEVEL_DEBUG, "Outgoing message failed: %d", reason);
+  app_message_outbox_send();
 }
 
 void out_sent_handler(DictionaryIterator *sent, void *context) {
