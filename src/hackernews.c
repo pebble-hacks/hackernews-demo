@@ -19,6 +19,13 @@ void send_message(char *message) {
   app_message_outbox_send();
 }
 
+void update_text(uint16_t length, char *title) {
+  free(s_text);
+  s_text = malloc(length);
+  strncpy(s_text, title, length);
+  text_layer_set_text(s_text_layer, s_text);
+}
+
 void in_dropped_handler(AppMessageResult reason, void *context) {
   APP_LOG(APP_LOG_LEVEL_DEBUG, "Incoming message dropped: %d", reason);
 }
@@ -29,6 +36,7 @@ void in_received_handler(DictionaryIterator *received, void *context) {
   tuple = dict_find(received, TITLE);
   if(tuple) {
     APP_LOG(APP_LOG_LEVEL_DEBUG, "Received message: %s", tuple->value->cstring);
+    update_text(tuple->length, tuple->value->cstring);
   }
 }
 
